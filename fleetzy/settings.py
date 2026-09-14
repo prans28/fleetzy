@@ -1,17 +1,218 @@
+import os
 from pathlib import Path
-BASE_DIR=Path(__file__).resolve().parent.parent
-SECRET_KEY="fleetzy-development-key-change-in-production"
-DEBUG=True
-ALLOWED_HOSTS=["127.0.0.1","localhost"]
-INSTALLED_APPS=["django.contrib.admin","django.contrib.auth","django.contrib.contenttypes","django.contrib.sessions","django.contrib.messages","django.contrib.staticfiles","inquiries.apps.InquiriesConfig"]
-MIDDLEWARE=["django.middleware.security.SecurityMiddleware","django.contrib.sessions.middleware.SessionMiddleware","django.middleware.common.CommonMiddleware","django.middleware.csrf.CsrfViewMiddleware","django.contrib.auth.middleware.AuthenticationMiddleware","django.contrib.messages.middleware.MessageMiddleware","django.middleware.clickjacking.XFrameOptionsMiddleware"]
-ROOT_URLCONF="fleetzy.urls"
-TEMPLATES=[{"BACKEND":"django.template.backends.django.DjangoTemplates","DIRS":[BASE_DIR/"templates"],"APP_DIRS":True,"OPTIONS":{"context_processors":["django.template.context_processors.request","django.contrib.auth.context_processors.auth","django.contrib.messages.context_processors.messages"]}}]
-WSGI_APPLICATION="fleetzy.wsgi.application"
-DATABASES={"default":{"ENGINE":"django.db.backends.sqlite3","NAME":BASE_DIR/"db.sqlite3"}}
-AUTH_PASSWORD_VALIDATORS=[]
-LANGUAGE_CODE="en-us";TIME_ZONE="Asia/Kolkata";USE_I18N=True;USE_TZ=True
-STATIC_URL="static/"
-DEFAULT_AUTO_FIELD="django.db.models.BigAutoField"
 
-STATICFILES_DIRS=[BASE_DIR/"static"]
+
+# ============================================================
+# BASE DIRECTORY
+# ============================================================
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# ============================================================
+# SECURITY
+# ============================================================
+
+# Production secret should be configured as an environment
+# variable in GoDaddy cPanel.
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "temporary-fleetzy-key-change-this-in-cpanel"
+)
+
+# Never use DEBUG=True on the public production website.
+DEBUG = False
+
+
+# ============================================================
+# ALLOWED HOSTS
+# ============================================================
+
+ALLOWED_HOSTS = [
+    "neuraldock.in",
+    "www.neuraldock.in",
+]
+
+
+# ============================================================
+# CSRF
+# ============================================================
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://neuraldock.in",
+    "https://www.neuraldock.in",
+]
+
+
+# ============================================================
+# INSTALLED APPLICATIONS
+# ============================================================
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    # Fleetzy application
+    "inquiries.apps.InquiriesConfig",
+]
+
+
+# ============================================================
+# MIDDLEWARE
+# ============================================================
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+
+# ============================================================
+# URL CONFIGURATION
+# ============================================================
+
+ROOT_URLCONF = "fleetzy.urls"
+
+
+# ============================================================
+# TEMPLATES
+# ============================================================
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+
+        # Global templates folder
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
+
+        "APP_DIRS": True,
+
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+
+# ============================================================
+# WSGI
+# ============================================================
+
+WSGI_APPLICATION = "fleetzy.wsgi.application"
+
+
+# ============================================================
+# DATABASE
+# ============================================================
+
+# SQLite is acceptable for the current Fleetzy demo/MVP.
+# For a larger production deployment, move to a server database.
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+
+
+# ============================================================
+# PASSWORD VALIDATION
+# ============================================================
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "UserAttributeSimilarityValidator"
+        ),
+    },
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "MinimumLengthValidator"
+        ),
+    },
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "CommonPasswordValidator"
+        ),
+    },
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "NumericPasswordValidator"
+        ),
+    },
+]
+
+
+# ============================================================
+# INTERNATIONALIZATION
+# ============================================================
+
+LANGUAGE_CODE = "en-us"
+
+TIME_ZONE = "Asia/Kolkata"
+
+USE_I18N = True
+
+USE_TZ = True
+
+
+# ============================================================
+# STATIC FILES
+# ============================================================
+
+STATIC_URL = "/static/"
+
+# Location generated by:
+# python manage.py collectstatic
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+# Fleetzy global static directory
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+
+# ============================================================
+# HTTPS / SSL SECURITY
+# ============================================================
+
+# Your neuraldock.in certificate is already installed.
+
+SECURE_SSL_REDIRECT = True
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+X_FRAME_OPTIONS = "DENY"
+
+
+# ============================================================
+# DEFAULT PRIMARY KEY
+# ============================================================
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
