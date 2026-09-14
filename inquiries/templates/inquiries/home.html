@@ -1,0 +1,20 @@
+{% extends "inquiries/base.html" %}{% block title %}Fleetzy | Intelligent School Mobility{% endblock %}
+{% block content %}
+<main class="hero"><div class="glow g1"></div><div class="glow g2"></div>
+<section><span class="tag">INTELLIGENT SCHOOL MOBILITY</span><h1>Confidence for every <em>school journey.</em></h1><p>Fleetzy brings school transportation, live trip visibility and family communication into one thoughtfully designed platform—giving transport teams a clearer view of every active journey.</p><div class="actions"><a class="button" href="{% url 'request-demo' %}">Request a School Demo →</a><a class="secondary" href="#features">Discover Fleetzy</a></div></section>
+<aside><header><b>Fleetzy Journey View</b><span>● ACTIVE</span></header><div class="map"><div class="route"></div><div class="bus">🚌</div><div class="pin">S</div></div><div class="stats"><div><b>Live</b><small>Journey view</small></div><div><b>Smart</b><small>Communication</small></div><div><b>Clear</b><small>Operations</small></div></div></aside></main>
+
+<section id="features" class="features"><span class="tag">ONE CONNECTED EXPERIENCE</span><h2>Designed around the people who move schools.</h2><p style="max-width:720px;margin:0 auto 38px;color:var(--muted);line-height:1.75">From the transport desk to families following a journey, Fleetzy is designed to make important information easier to understand and act on.</p><div class="cards">
+<article><i>⌖</i><h3>Journey Visibility</h3><p>Bring active school transport into a focused operational view instead of relying on fragmented updates.</p></article>
+<article><i>◉</i><h3>Family Awareness</h3><p>Give parents a simpler way to stay informed about relevant school transportation activity.</p></article>
+<article><i>▦</i><h3>Operations Workspace</h3><p>Give authorized school teams a central place to review transport information and daily activity.</p></article>
+</div></section>
+
+<section id="how" class="features" style="background:#0e110f"><span class="tag">BUILT WITH PURPOSE</span><h2>Less noise. More useful information.</h2><div class="cards">
+<article><i>01</i><h3>Start the journey</h3><p>The driver begins an assigned school trip, allowing Fleetzy to establish the active journey context.</p></article>
+<article><i>02</i><h3>Keep the trip visible</h3><p>Relevant journey information can flow through the Fleetzy platform for authorized users.</p></article>
+<article><i>03</i><h3>Keep people informed</h3><p>Schools and families get a more structured transportation experience with meaningful updates.</p></article>
+</div></section>
+
+<section class="cta"><span class="tag" style="color:#f2d99e">FLEETZY FOR SCHOOLS</span><h2>Bring clarity to school transportation.</h2><p>Share a few details about your school and begin a conversation about Fleetzy.</p><a class="button light" href="{% url 'request-demo' %}">Request your demo →</a></section>
+{% endblock %}

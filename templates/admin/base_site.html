@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}Fleetzy Control Center{% endblock %}
+{% block branding %}
+<div class="fz-brand">
+  <span class="fz-logo">F</span>
+  <span><strong>Fleetzy</strong><small>Control Center</small></span>
+</div>
+{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static 'fleetzy_admin/admin.css' %}">{% endblock %}
+{% block extrahead %}{{ block.super }}<script>document.documentElement.dataset.theme='dark';</script>{% endblock %}
+{% block nav-global %}<span class="fz-secure">● SECURE ADMIN</span>{% endblock %}

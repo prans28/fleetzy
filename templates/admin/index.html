@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+{% block bodyclass %}{{ block.super }} dashboard fleetzy-dashboard{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+{% block content %}
+<div class="fz-dashboard-head">
+  <div><span class="fz-kicker">SCHOOL OPERATIONS</span><h1>Fleetzy Control Center</h1><p>Manage school partnerships and incoming requests.</p></div>
+  <a class="fz-site-btn" href="/" target="_blank">View Fleetzy website ↗</a>
+</div>
+
+<div class="fz-stats">
+  <div><span>WORKSPACE</span><strong>School</strong><small>Partnership operations</small></div>
+  <div><span>INQUIRIES</span><strong>Live</strong><small>Database connected</small></div>
+  <div><span>ACCESS</span><strong>Secure</strong><small>Administrator only</small></div>
+</div>
+
+<div class="fz-section-title"><div><span class="fz-kicker">WORKSPACE OVERVIEW</span><h2>Built for focused school operations</h2><p style="color:#aaa99f;max-width:760px;line-height:1.65;margin-bottom:28px">Use this private workspace to review incoming school partnership requests, find contact information quickly, and mark completed follow-ups. Fleetzy keeps the public school experience separate from administrator operations.</p></div></div>
+<div class="fz-section-title"><div><span class="fz-kicker">MANAGEMENT</span><h2>School Partnerships</h2></div></div>
+<div class="fz-module-grid">
+{% for app in app_list %}
+  {% for model in app.models %}
+    <article class="fz-module-card">
+      <div class="fz-module-icon">◎</div>
+      <div class="fz-module-content">
+        <span>{{ app.name }}</span>
+        <h3>{{ model.name }}</h3>
+        <p>Review, search and manage Fleetzy school partnership records.</p>
+        <div class="fz-module-actions">
+          {% if model.admin_url %}<a class="fz-primary" href="{{ model.admin_url }}">Open records →</a>{% endif %}
+          {% if model.add_url %}<a href="{{ model.add_url }}">Add new</a>{% endif %}
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+{% empty %}
+  <p>No management modules are available for this account.</p>
+{% endfor %}
+</div>
+{% endblock %}
+{% block sidebar %}{% endblock %}
